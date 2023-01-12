@@ -38,6 +38,7 @@ int main () {
 		scanf("%d", &res);
 		act++;
 	} while(res == TRUE);
+	printf("\n");
 	muestraAtributos(E1);
 	printf("\n");
 	return 0;
