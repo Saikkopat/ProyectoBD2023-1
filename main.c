@@ -4,8 +4,9 @@
 #include "entidadrelacion.h"
 
 void errores(int msg) {
-	char *mensajes[3] = {"\n   No hay memoria disponible (ENTIDAD).\n",
+	char *mensajes[4] = {"\n   No hay memoria disponible (ENTIDAD).\n",
 								"\n   No hay memoria disponible (ATRIBUTO).\n",
+								"\n   No hay memoria disponible (RELACION).\n",
 								"\n   Elemento vacío.\n"};
 	printf("%s", mensajes[msg]);
 }

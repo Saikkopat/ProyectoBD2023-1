@@ -24,7 +24,7 @@ ENTIDAD crearEntidad() {
 
 ENTIDAD asignarNombre(ENTIDAD E, char *nom) {
 	if (esEntidadVacia(E) == TRUE) {
-		errores(2);
+		errores(3);
 		exit(0);
 	}
 	E -> nombre = nom;
@@ -36,6 +36,14 @@ int esEntidadVacia(ENTIDAD E) {
 		return TRUE;
 	else
 		return FALSE;
+}
+
+void mostrarEntidad(ENTIDAD E) {
+	if (esEntidadVacia(E) == TRUE) {
+		errores(3);
+		exit(0);
+	}
+	printf("\n  %s", E -> nombre);
 }
 
 // Operaciones TAD ATRIBUTO
@@ -52,7 +60,7 @@ ATRIBUTO crearAtributo() {
 
 ENTIDAD insertarAtributo(ENTIDAD E, char *nom, int idf, int tipof) {
 	if (esEntidadVacia(E) == TRUE) {
-		errores(2);
+		errores(3);
 		exit(0);
 	}
 	ATRIBUTO At = crearAtributo();
@@ -77,7 +85,7 @@ ENTIDAD insertarAtributo(ENTIDAD E, char *nom, int idf, int tipof) {
 
 void muestraAtributos(ENTIDAD E) {
 	if(esEntidadVacia(E) == TRUE) {
-		errores(2);
+		errores(3);
 		exit(0);
 	}
 	ATRIBUTO actual;
@@ -114,4 +122,54 @@ int esAtributoVacio(ATRIBUTO A) {
 		return TRUE;
 	else
 		return FALSE;
+}
+
+// Operaciones del TAD RELACIÓN
+
+RELACION crearRelacion() {
+	RELACION R;
+	R = (relacion *)malloc(sizeof(relacion));
+	if (esRelacionVacia(R) == TRUE) {
+		errores(2);
+		exit(0);
+	}
+	R -> inicial = NULL;
+	R -> entidad1 = NULL;
+	R -> entidad2 = NULL;
+	return R;
+}
+
+RELACION asignaRelacion(RELACION R, ENTIDAD E1, ENTIDAD E2, char* nom, int cardf1, int cardf2, int tipof) {
+	if (esRelacionVacia(R) == TRUE) {
+		errores(3);
+		exit(0);
+	}
+	R -> nombre = nom;
+	R -> entidad1 = E1;
+	R -> entidad2 = E2;
+	R -> card1 = cardf1;
+	R -> card2 = cardf2;
+	R -> tipo = tipof;
+	return R;
+}
+
+void imprimeRelacion(RELACION R) {
+	if (esRelacionVacia(R) == TRUE) {
+		errores(3);
+		exit(0);
+	}
+	printf("\n %s:", R -> nombre);
+	mostrarEntidad(R -> entidad1);
+	
+	printf("\n   %d,%d", R -> card1, R -> card2);
+	mostrarEntidad(R -> entidad1);
+
+}
+
+int esRelacionVacia(RELACION R) {
+
+}
+
+RELACION borraRelacion(RELACION R) {
+
 }

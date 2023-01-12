@@ -18,6 +18,7 @@ ENTIDAD asignarNombre(ENTIDAD E, char *nom); //Asigna o modifica nombre de entid
 ENTIDAD borrarEntidad(ENTIDAD E); //Elimina una entidad, borra atributos asociados y relaciones.
 void mostrarAtributos(ENTIDAD E); //Muestra los atributos de la entidad.
 int esEntidadVacia(ENTIDAD E); //Verifica si el apuntador está vacío.
+void mostrarEntidad(ENTIDAD E); //Muestra el nombre de la entidad.
 
 // Definición TAD ATRIBUTO
 
@@ -52,13 +53,12 @@ typedef struct relacion {
 	struct entidad* entidad2;
 	int card2;
 	int tipo;
-	int participacion;
 } relacion;
 
 typedef relacion* RELACION;
 
 RELACION crearRelacion(); //Crea una relación.
-RELACION asignaRelacion(RELACION R, ENTIDAD E1, ENTIDAD E2, char* nombre, int card1, int card2, int tipo, int participacion); // Asigna los datos de una relación.
+RELACION asignaRelacion(RELACION R, ENTIDAD E1, ENTIDAD E2, char* nom, int cardf1, int cardf2, int tipof); // Asigna los datos de una relación.
 void imprimeRelacion(RELACION R);
 int esRelacionVacia(RELACION R);
 RELACION borraRelacion(RELACION R);
