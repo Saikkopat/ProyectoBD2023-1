@@ -160,14 +160,16 @@ void imprimeRelacion(RELACION R) {
 	}
 	printf("\n %s:", R -> nombre);
 	mostrarEntidad(R -> entidad1);
-	
 	printf("\n   %d,%d", R -> card1, R -> card2);
 	mostrarEntidad(R -> entidad1);
-
+	printf("\n");
 }
 
 int esRelacionVacia(RELACION R) {
-
+	if (R == NULL)
+		return TRUE;
+	else
+		return FALSE;
 }
 
 RELACION borraRelacion(RELACION R) {

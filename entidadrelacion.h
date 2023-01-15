@@ -9,12 +9,13 @@
 typedef struct entidad {
 	char *nombre;
 	struct atributo* inicial;
+	int tipoe;
 } entidad;
 
 typedef entidad* ENTIDAD;
 
 ENTIDAD crearEntidad(); //Crea una entidad, inicial = NULL hasta crear atributos.
-ENTIDAD asignarNombre(ENTIDAD E, char *nom); //Asigna o modifica nombre de entidad.
+ENTIDAD asignarEntidad(ENTIDAD E, char *nom, int tipo); //Asigna o modifica nombre de entidad.
 ENTIDAD borrarEntidad(ENTIDAD E); //Elimina una entidad, borra atributos asociados y relaciones.
 void mostrarAtributos(ENTIDAD E); //Muestra los atributos de la entidad.
 int esEntidadVacia(ENTIDAD E); //Verifica si el apuntador está vacío.
@@ -64,6 +65,13 @@ int esRelacionVacia(RELACION R);
 RELACION borraRelacion(RELACION R);
 
 // Definición TAD ENTRELA (more like FLDSMDFR).
+
+
+typedef struct entrela {
+
+} entrela;
+
+typedef entrela* ENTRLA;
 
 // Utilidades
 
