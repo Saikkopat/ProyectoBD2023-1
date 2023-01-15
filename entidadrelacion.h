@@ -66,12 +66,36 @@ RELACION borraRelacion(RELACION R);
 
 // Definición TAD ENTRELA (more like FLDSMDFR).
 
+typedef struct nodoEntidad {
+	struct entidad* nodo;
+	struct entidad* siguiente;
+} nodoEntidad;
+
+typedef nodoEntidad NODOENTIDAD;
+
+typedef struct nodoRelacion {
+	struct relacion* nodo;
+	struct relacion* siguiente;
+} nodoRelacion;
+
+typedef nodoRelacion NODORELACION;
+
 
 typedef struct entrela {
-
+	char* nombreER;
+	struct nodoEntidad* inicialE;
+	struct nodoRelacion* inicialR;
 } entrela;
 
-typedef entrela* ENTRLA;
+typedef entrela* ENTRELA;
+
+ENTRELA crearModelo(char* nom); //Inicializa el modelo asignando el nombre del modelo.
+void listaEntidades(ENTRELA ER); //Lista todas las entidades asociadas al modelo.
+void listaRelaciones(ENTRELA ER); //Lista todas las relaciones del modelo.
+nodoEntidad* crearNodoEntidad(); //Crea un nodo para el listado de entidades.
+nodoRelacion* crearNodoRelacion(); //Crea un nodo para el listado de relaciones.
+ENTRELA enlistarEntidad(ENTRELA ER, ENTIDAD E); //Enlista la entidad.
+ENTRELA enlistarRelacion(ENTRELA ER, RELACION R); //Enlista la relacion.
 
 // Utilidades
 

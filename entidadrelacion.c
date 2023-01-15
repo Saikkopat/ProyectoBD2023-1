@@ -9,6 +9,46 @@ void errores(int msg);
 	1: Apuntador vacío.
 */
 
+// Operaciones del TAD ENTRLA
+
+nodoEntidad* crearNodoEntidad() {
+	nodoEntidad* nuevo;
+	nuevo = (nodoEntidad*)malloc(sizeof(nodoEntidad));
+	if(nuevo == NULL) {
+		errores(0);
+		exit(0);
+	}
+	nuevo -> nodo = NULL;
+	nuevo -> siguiente = NULL;
+	return nuevo;
+}
+
+nodoRelacion* crearNodoRelacion() {
+	nodoRelacion* nuevo;
+	nuevo = (nodoRelacion*)malloc(sizeof(nodoRelacion));
+	if(nuevo == NULL) {
+		errores(0);
+		exit(0);
+	}
+	nuevo -> nodo = NULL;
+	nuevo -> siguiente = NULL;
+	return nuevo;
+}
+
+ENTRELA crearModelo(char* nom) {
+	ENTRELA ER;
+	ER = (entrela*)malloc(sizeof(entrela));
+	if(ER == NULL) {
+		errores(0);
+		exit(0);
+	}
+	ER -> inicialE = crearNodoEntidad();
+	ER -> inicialR = crearNodoRelacion();
+	ER -> nombreER = nom;
+	return ER;
+}
+
+
 // Operaciones TAD ENTIDAD
 
 ENTIDAD crearEntidad() {
