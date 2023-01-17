@@ -11,8 +11,8 @@ void errores(int msg);
 
 // Operaciones del TAD ENTRLA
 
-nodoEntidad* crearNodoEntidad() {
-	nodoEntidad* nuevo;
+NODOENTIDAD crearNodoEntidad() {
+	NODOENTIDAD nuevo;
 	nuevo = (nodoEntidad*)malloc(sizeof(nodoEntidad));
 	if(nuevo == NULL) {
 		errores(0);
@@ -23,8 +23,8 @@ nodoEntidad* crearNodoEntidad() {
 	return nuevo;
 }
 
-nodoRelacion* crearNodoRelacion() {
-	nodoRelacion* nuevo;
+NODORELACION crearNodoRelacion() {
+	NODORELACION nuevo;
 	nuevo = (nodoRelacion*)malloc(sizeof(nodoRelacion));
 	if(nuevo == NULL) {
 		errores(0);
@@ -48,6 +48,72 @@ ENTRELA crearModelo(char* nom) {
 	return ER;
 }
 
+int esERVacio (ENTRELA ER) {
+	if (ER == NULL)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+ENTRELA enlistarEntidad(ENTRELA ER, ENTIDAD E) {
+	if(esERVacio(ER) == TRUE) {
+		errores(3);
+		exit(0);
+	}
+	NODOENTIDAD nodoAEnlistar;
+	nodoAEnlistar = crearNodoEntidad();
+	if (esEntidadVacia(ER -> inicialE -> nodo) == TRUE) {
+		ER -> inicialE -> nodo = E;
+		ER -> inicialE -> siguiente = NULL;
+	} else {
+		NODOENTIDAD actual, anterior;
+		actual = ER -> inicialE;
+		while (actual != NULL) {
+			anterior = actual;
+			actual = actual -> siguiente;
+		}
+		nodoAEnlistar -> siguiente = NULL;
+		anterior -> siguiente = nodoAEnlistar;
+	}
+	return ER;
+}
+
+ENTRELA enlistarRelacion(ENTRELA ER, RELACION R) {
+	if(esERVacio(ER) == TRUE) {
+		errores(3);
+		exit(0);
+	}
+	NODORELACION nodoAEnlistar;
+	nodoAEnlistar = crearNodoRelacion();
+	if (esRelacionVacia(ER -> inicialR -> nodo) == TRUE) {
+		ER -> inicialR -> nodo = R;
+		ER -> inicialR -> siguiente = NULL;
+	} else {
+		nodoRelacion *actual, *anterior;
+		actual = ER -> inicialR;
+		while (actual != NULL) {
+			anterior = actual;
+			actual = actual -> siguiente;
+		}
+		nodoAEnlistar -> siguiente = NULL;
+		anterior -> siguiente = nodoAEnlistar;
+	}
+	return ER;
+}
+
+void listaEntidades(ENTRELA ER) {
+	if(esERVacio(ER) == TRUE) {
+		errores(3);
+		exit(0);
+	}
+	NODOENTIDAD actual;
+	actual = ER -> inicialE;
+	while (actual != NULL) {
+		mostrarEntidad(actual -> nodo);
+		muestraAtributos(actual -> nodo);
+		actual = actual -> siguiente;
+	}
+}
 
 // Operaciones TAD ENTIDAD
 
@@ -62,12 +128,13 @@ ENTIDAD crearEntidad() {
 	return E;
 }
 
-ENTIDAD asignarNombre(ENTIDAD E, char *nom) {
+ENTIDAD asignarEntidad(ENTIDAD E, char *nom, int tipo) {
 	if (esEntidadVacia(E) == TRUE) {
 		errores(3);
 		exit(0);
 	}
 	E -> nombre = nom;
+	E -> tipoe = tipo;
 	return E;
 }
 
@@ -83,7 +150,7 @@ void mostrarEntidad(ENTIDAD E) {
 		errores(3);
 		exit(0);
 	}
-	printf("\n  %s", E -> nombre);
+	printf("\n  %s, %d", E -> nombre, E -> tipoe);
 }
 
 // Operaciones TAD ATRIBUTO

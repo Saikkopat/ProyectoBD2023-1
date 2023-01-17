@@ -17,8 +17,13 @@ char* crearString () {
 }
 
 int main () {
-	char *entidad, *atributo;
+	char *er, *entidad, *atributo;
 	int res, act, idf, tipof, tipoe, idfg;
+	printf("\nIngresa el nombre de la base de datos a modelar: ");
+	er = crearString();
+	scanf("%s", er);
+	ENTRELA ER1;
+	ER1 = crearModelo(er);
 	printf("\n Ingresa las entidades del modelo Entidad - Relacion:\n");
 	do {
 		ENTIDAD E1 = crearEntidad();
@@ -26,7 +31,8 @@ int main () {
 		entidad = crearString();
 		scanf("%s", entidad);
 		printf("\n  ¿Es una entidad fuerte o debil?\n   1. Fuerte\n   2. Debil\n   ");
-		asignarEntidad(E1, entidad, tipoe);
+		scanf("%d", &tipoe);
+		E1 = asignarEntidad(E1, entidad, tipoe);
 		printf("\nIngresa un atributos:");
 		act = TRUE;
 		idf = FALSE;
@@ -47,12 +53,12 @@ int main () {
 			printf("\n  ¿Deseas ingresar otro atributo?\n   1. Sí\n   2. No\n   ");
 			scanf("%d", &res);
 			act++;
-			mostrarEntidad(E1);
-			mostrarAtributos(E1);
 		} while(res == TRUE);
 		printf("\n  ¿Deseas ingresar otra entidad?\n   1. Sí\n   2. No\n   ");
 		scanf("%d", &res);
+		ER1 = enlistarEntidad(ER1, E1);
 	} while (res == TRUE);
+	listaEntidades(ER1);
 	printf("\n");
 	return 0;
 }
